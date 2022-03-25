@@ -30,9 +30,21 @@ const orderSchema=mongoose.Schema({
     },
     orderItems:[
         {
+            name:{
+                type: String,
+                required: true,
+            },
             quantity:{
                 type: Number,
                 required: true,
+            },
+            image:{
+                public_id:{
+                    type: String,
+                },
+                url:{
+                    type: String,
+                }
             },
             price:{
                 type: Number,
@@ -87,7 +99,7 @@ const orderSchema=mongoose.Schema({
     },
     createdAt:{
         type: Date,
-        default:Date.now()
+        default:Date.now
     }
 })
 

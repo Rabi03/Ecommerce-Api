@@ -22,9 +22,15 @@ const productSchema=mongoose.Schema({
         default:0
     },
     images:[
-        {
-            type: String,
-            required:true,
+        { 
+            public_id:{
+                type: String,
+                required:true,
+            },
+            url:{
+                type: String,
+                required:true,
+            }
         }
     ],
     category:{
@@ -39,14 +45,18 @@ const productSchema=mongoose.Schema({
                 "Headphones",
                 "Food",
                 'Books',
-                'Clothes',
-                "Beauty",
+                'Clothes/Shoes',
+                "Beauty/health",
                 "Sports",
                 "Outdoor",
                 "Home"
             ],
             message:"Please select correct category for this product"
         }
+    },
+    seller:{
+        type:String,
+        required:[true,"Please enter seller name"],
     },
     stock:{
         type:Number,
@@ -82,16 +92,16 @@ const productSchema=mongoose.Schema({
             }
         }
     ],
-    seller:{
+    user:{
         type:mongoose.Schema.ObjectId,
         ref:'User',
         required:true,
 
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now
     }
-},
-{
-    timestamps: true
-}
-)
+})
 
 module.exports =mongoose.model('Product',productSchema)
